@@ -36,7 +36,11 @@ public items: string[] = [];
     this.swapiSvc.getPlanets().subscribe(
       data => {
         console.log(data);
-        this.items = (<any> data).results.map(x => x.name).sort(); 
+        // this.items = (<any> data).results.map(x => x.name).sort(); 
+        this.items = [
+        ...this.items
+        , ...(<any> data).results.map(x => x.name)
+        ].sort()
       }
       ,error => console.log(error)
       );
