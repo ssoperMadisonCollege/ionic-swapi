@@ -31,7 +31,18 @@ public items: string[] = [];
     , private swapiSvc: SwapiService
     ) {}
 
+private foo(stop: boolean = false) {
+  console.log('foo()');
+  if (!stop) {
+    this.foo(new Date().getSeconds() > 30 
+      ? true 
+      : false);
+  }
+}
+
   ngOnInit() {
+
+    // this.foo();
 
     this.swapiSvc.getPlanets().subscribe(
       data => {
@@ -43,7 +54,7 @@ public items: string[] = [];
         ].sort()
       }
       ,error => console.log(error)
-      );
+    );
   }
   // add back when alpha.4 is out
   // navigate(item) {

@@ -23,7 +23,8 @@ export class SwapiService {
     // // return race(p1,p2,p3,p4,p5,p6,p7);
 
     return this.httpSvc.get("https://swapi.co/api/planets").pipe(
-      expand(data => (<any> data).next 
+      expand(
+        data => (<any> data).next
           ? this.httpSvc.get((<any> data).next)
           : empty()
       )
